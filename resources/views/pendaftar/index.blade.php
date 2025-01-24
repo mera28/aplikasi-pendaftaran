@@ -12,12 +12,10 @@
 
 @section('konten')
 
-
-
 <div class="col-md-12">
     <div class="card card-info">
         <div class="card-header">
-            <h2 class="card-title">Data Customer</h2>
+            <h2 class="card-title">Data pendaftar</h2>
             <a type="button" class="btn btn-success float-right" href="{{ route('pendaftar.create') }}">
                 <i class=" fas fa-plus"></i> Tambah Pendaftar
             </a>
@@ -37,25 +35,44 @@
                         <th>Tinggi Badan</th>
                         <th>Berat Badan</th>
                         <th>Prestasi</th>
+                        <th>Foto</th>
+                        <th>Dokumen</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                @foreach($data as $dt)
+                @foreach($data as $pendaftar)
+                <div class="col-lg-3">
+                
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $dt->nama }}</td>
-                        <td>{{ $dt->alamat}}</td>
-                        <td>{{ $dt->nomor_telepon}}</td>
-                        <td>{{ $dt->tanggal_lahir}}</td>
-                        <td>{{ $dt->jenis_kelamin }}</td>
-                        <td>{{ $dt->tinggi_badan }}</td>
-                        <td>{{ $dt->berat_badan }}</td>
-                        <td>{{ $dt->prestasi }}</td>
+                        <td>{{ $pendaftar->nama }}</td>
+                        <td>{{ $pendaftar->alamat}}</td>
+                        <td>{{ $pendaftar->nomor_telepon}}</td>
+                        <td>{{ $pendaftar->tanggal_lahir}}</td>
+                        <td>{{ $pendaftar->jenis_kelamin }}</td>
+                        <td>{{ $pendaftar->tinggi_badan }}</td>
+                        <td>{{ $pendaftar->berat_badan }}</td>
+                        <td>{{ $pendaftar->prestasi }}</td>
+                        <td>
+    @if($pendaftar->foto)
+    <img src="{{ $pendaftar->foto ? Storage::url($pendaftar->foto) : asset('images/default.jpg') }}" class="card-img-top" alt="Foto Pendaftar">
+    @else
+    <img src="{{ $pendaftar->foto ? Storage::url($pendaftar->foto) : asset('images/default.jpg') }}" class="card-img-top" alt="Foto Pendaftar">
+    @endif
+</td>
+<td>
+    @if($pendaftar->dokumen)
+        <a href="{{ asset('storage/'.$pendaftar->dokumen) }}" target="_blank">Lihat Dokumen</a>
+    @else
+        <span class="text-muted">Tidak ada dokumen</span>
+    @endif
+</td>
+
                         <td>
                             <div class="btn-group">
-                                <form action="{{ route('pendaftar.destroy',$dt->id)}}" method="POST">
+                                <form action="{{ route('pendaftar.destroy',$pendaftar->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">
@@ -64,10 +81,10 @@
 
                                 </form>
 
-                                <a type="button" class="btn btn-warning" href="{{ route('pendaftar.edit',$dt->id) }}">
+                                <a type="button" class="btn btn-warning" href="{{ route('pendaftar.edit',$pendaftar->id) }}">
                                     <i class=" fas fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-success" href="{{ route('pendaftar.show',$dt->id) }}">
+                                <a type="button" class="btn btn-success" href="{{ route('pendaftar.show',$pendaftar->id) }}">
                                     <i class=" fas fa-eye"></i>
                                 </a>
                             </div>

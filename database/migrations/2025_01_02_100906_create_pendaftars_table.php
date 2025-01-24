@@ -22,6 +22,7 @@ return new class extends Migration
         $table->integer('berat_badan');
         $table->text('prestasi')->nullable();
         $table->string('foto')->nullable();
+        $table->string('dokumen')->nullable();
         $table->timestamps();
     });
 }

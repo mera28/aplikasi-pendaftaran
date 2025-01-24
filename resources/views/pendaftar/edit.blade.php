@@ -20,7 +20,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('pendaftar.update',$pendaftar->id) }}" method="POST">
+        <form action="{{ route('pendaftar.update',$pendaftar->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class=" card-body">
@@ -60,6 +60,14 @@
                 <div class="form-group">
                     <label for="prestasi">Prestasi:</label>
                     <textarea name="prestasi" id="prestasi" class="form-control">{{ $pendaftar->prestasi }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <input type="file" id="foto" name="foto" class="form-control" value="{{ $pendaftar->foto }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="dokumen">Dokumen:</label>
+                    <input type="file" id="dokumen" name="dokumen" class="form-control" value="{{ $pendaftar->dokumen }}" required>
                 </div>
             </div>
             <!-- /.card-body -->

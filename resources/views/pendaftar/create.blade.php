@@ -20,10 +20,10 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('pendaftar.store') }}" method="POST">
+        <form action="{{ route('pendaftar.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <div class=" card-body">
+            <div class="card-body">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap:</label>
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="">
@@ -45,22 +45,31 @@
                     <label for="jenis_kelamin">Jenis Kelamin:</label>
                     <select class="form-control" name="jenis_kelamin" required>
                         <option value="Laki-Laki">Laki-Laki</option>
-                        <option value="Perempuan">perempuan</option>
+                        <option value="Perempuan">Perempuan</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="tinggi_badan">Tinggi Badan (cm):</label>
-                    <input type="number" name="tinggi_badan" class=" form-control" required min="150">
+                    <input type="number" name="tinggi_badan" class="form-control" required min="150">
                 </div>
                 <div class="form-group">
                     <label for="berat_badan">Berat Badan (kg):</label>
-                    <input type="number" name="berat_badan" class=" form-control" required min="40">
+                    <input type="number" name="berat_badan" class="form-control" required min="40">
                 </div>
                 <div class="form-group">
                     <label for="prestasi">Prestasi</label>
                     <textarea class="form-control" name="prestasi"></textarea>
                 </div>
-                
+                <!-- Tambahan Input Foto -->
+                <div class="form-group">
+                    <label for="foto">Unggah Foto:</label>
+                    <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+                </div>
+                <!-- Tambahan Input Dokumen -->
+                <div class="form-group">
+                    <label for="dokumen">Unggah Dokumen (PDF):</label>
+                    <input type="file" class="form-control" id="dokumen" name="dokumen" accept=".pdf" required>
+                </div>
             </div>
             <!-- /.card-body -->
 

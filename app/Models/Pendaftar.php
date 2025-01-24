@@ -22,6 +22,7 @@ class Pendaftar extends Model
         'berat_badan',
         'prestasi',
         'foto',
+        'dokumen',
     ];
 
     public function pendaftar():HasMany
